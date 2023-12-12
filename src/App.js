@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import WebLogin from "./WebLogin";
+import JoinUs from "./JoinUs";
+import Header from "./Header";
+import { useState } from "react";
 
 function App() {
+  const [isLoggedin, setIsLoggedin] = useState(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+      <Header isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin}/>
+      <Routes>
+        <Route path="/WebLogin" element={<WebLogin isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin}/>}/>
+        <Route path="/JoinUs" element={<JoinUs isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin}/>}/>
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }
